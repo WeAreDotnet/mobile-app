@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeAreDotNet.MobileApp.Views.MainPage" BackgroundColor="#111633">
+
+    <CollectionView ItemsSource="{Binding FeedItems}" ItemSizingStrategy="MeasureFirstItem" Margin="10">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
+                    <Grid RowDefinitions="200,100,50" HeightRequest="375" RowSpacing="5">
+                        <Image Grid.Row="0" Source="{Binding PreviewImage}" HeightRequest="200" Aspect="AspectFill" />
+                        <Label Grid.Row="1" Text="{Binding Title}" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource White}" />
+
+                        <HorizontalStackLayout Grid.Row="2" Spacing="5" VerticalOptions="Start" Margin="5,0,0,0">
+                                <Image Source="{Binding Picture}" WidthRequest="30" HeightRequest="30" VerticalOptions="Center">
+                                    <Image.Clip>
+                                        <EllipseGeometry RadiusX="15"
+                                                         RadiusY="15"
+                                                         Center="15,15" />
+                                    </Image.Clip>
+                                </Image>
+                            <Label Text="{Binding DisplayName}" VerticalOptions="Center" TextColor="{StaticResource White}" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>
+
