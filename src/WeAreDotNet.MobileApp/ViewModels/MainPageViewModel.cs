@@ -1,17 +1,16 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using WeAreDotNet.MobileApp.Models;
 using WeAreDotNet.MobileApp.Services;
 
 namespace WeAreDotNet.MobileApp.ViewModels;
 
-public class MainPageViewModel : INotifyPropertyChanged
+public partial class MainPageViewModel : ObservableObject
 {
     private readonly WeAreDotNetService weAreDotNetService;
 
-    public ObservableCollection<FeedEntry> FeedItems { get; set; } = new();
-
-    public event PropertyChangedEventHandler PropertyChanged;
+    [ObservableProperty]
+    private ObservableCollection<FeedEntry> feedItems = new();
 
     public MainPageViewModel(WeAreDotNetService weAreDotNetService)
     {
@@ -28,7 +27,5 @@ public class MainPageViewModel : INotifyPropertyChanged
         {
             FeedItems.Add(item);
         }
-
-        PropertyChanged.Invoke(this, new(nameof(FeedItems)));
     }
 }
