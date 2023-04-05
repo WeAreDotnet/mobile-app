@@ -1,26 +1,30 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text.Json;
 using WeAreDotNet.MobileApp.Models;
+using WeAreDotNet.MobileApp.Services;
 
 namespace WeAreDotNet.MobileApp.ViewModels;
 
 public class MainPageViewModel : INotifyPropertyChanged
 {
+    private readonly WeAreDotNetService weAreDotNetService;
+
     public ObservableCollection<FeedEntry> FeedItems { get; set; } = new();
 
     public event PropertyChangedEventHandler PropertyChanged;
 
+    public MainPageViewModel(WeAreDotNetService weAreDotNetService)
+    {
+        this.weAreDotNetService = weAreDotNetService;
+    }
+
     public async Task LoadFeedItems()
     {
-        HttpClient httpClient = new();
-
-        var result = await httpClient.GetStreamAsync("https://api.wearedotnet.io/feeds/topRecent_new");
-        var typedResult = await JsonSerializer.DeserializeAsync<LandingPageFeed>(result);
+        var landingPageFeed = await weAreDotNetService.GetLandingPageFeed();
 
         FeedItems.Clear();
 
-        foreach (var item in typedResult.FeedEntriesTop9)
+        foreach (var item in landingPageFeed.FeedEntriesTop9)
         {
             FeedItems.Add(item);
         }

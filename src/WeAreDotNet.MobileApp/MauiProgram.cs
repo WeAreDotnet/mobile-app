@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using WeAreDotNet.MobileApp.Services;
 using WeAreDotNet.MobileApp.ViewModels;
 using WeAreDotNet.MobileApp.Views;
 
@@ -19,10 +20,10 @@ public static class MauiProgram
 
 		builder.Services.AddTransient<MainPage>();
 		builder.Services.AddTransient<MainPageViewModel>();
-
+		builder.Services.AddSingleton<WeAreDotNetService>();
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();
