@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using WeAreDotNet.MobileApp.Models;
 using WeAreDotNet.MobileApp.Services;
 
@@ -45,6 +46,17 @@ namespace WeAreDotNet.MobileApp.ViewModels
             {
                 RecentUsers.Add(user);
             }
+        }
+
+        [RelayCommand]
+        private async Task ShowProfileAsync(string nickname)
+        {
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { "nickname", nickname }
+            };
+
+            await Shell.Current.GoToAsync($"profile", navigationParameter);
         }
     }
 }

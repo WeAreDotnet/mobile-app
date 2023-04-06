@@ -5,6 +5,7 @@
              xmlns:viewmodels="clr-namespace:WeAreDotNet.MobileApp.ViewModels"
              x:Class="WeAreDotNet.MobileApp.Views.CreatorsPage"
              x:DataType="viewmodels:CreatorsPageViewModel"
+             x:Name="creatorsPage"
              Title="Creators" BackgroundColor="#111633">
     <VerticalStackLayout>
         <!-- Counters -->
@@ -28,6 +29,9 @@
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Creator">
                     <VerticalStackLayout WidthRequest="140">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowProfileCommand, Source={Reference creatorsPage}}" CommandParameter="{Binding Nickname}" />
+                        </VerticalStackLayout.GestureRecognizers>
                         <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
                             <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource Secondary}">
                                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding Picture}" WidthRequest="60" HeightRequest="60">
@@ -49,8 +53,12 @@
         <Label Text="New users:" FontSize="15" TextColor="{StaticResource White}" Margin="10,0,0,0" />
         <CarouselView ItemsSource="{Binding RecentUsers}" Loop="False" HeightRequest="120" HorizontalScrollBarVisibility="Never" Margin="10" PeekAreaInsets="15">
             <CarouselView.ItemTemplate>
-                <DataTemplate x:DataType="models:Creator">
+                <DataTemplate x:DataType="models:User">
                     <VerticalStackLayout WidthRequest="140">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowProfileCommand, Source={Reference creatorsPage}}" CommandParameter="{Binding Nickname}" />
+                        </VerticalStackLayout.GestureRecognizers>
+
                         <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
                             <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource Secondary}">
                                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding Picture}" WidthRequest="60" HeightRequest="60">
