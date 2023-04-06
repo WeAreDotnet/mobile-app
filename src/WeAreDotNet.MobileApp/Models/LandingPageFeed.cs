@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace WeAreDotNet.MobileApp.Models;
 
@@ -13,6 +11,5 @@ public class LandingPageFeed
     public List<FeedEntry> FeedEntries { get; set; }
 
     [JsonPropertyName("sponsoredFeedEntries")]
-    public object SponsoredFeedEntries { get; set; }
+    public List<FeedEntry> SponsoredFeedEntries { get; set; }
 }
-

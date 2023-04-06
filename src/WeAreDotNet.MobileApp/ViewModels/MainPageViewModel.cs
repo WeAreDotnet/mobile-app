@@ -6,15 +6,19 @@ using WeAreDotNet.MobileApp.Services;
 
 namespace WeAreDotNet.MobileApp.ViewModels;
 
-public partial class MainPageViewModel : ObservableObject
+public partial class MainPageViewModel : BaseViewModel
 {
-    private readonly WeAreDotNetService weAreDotNetService;
-
     [ObservableProperty]
     private ObservableCollection<FeedEntry> feedItems = new();
 
     [ObservableProperty]
     private FeedEntry selectedFeedItem;
+
+    public MainPageViewModel(WeAreDotNetService weAreDotNetService)
+        : base (weAreDotNetService)
+    {
+
+    }
 
     [RelayCommand]
     private async Task FeedItemSelectedAsync()
@@ -40,11 +44,6 @@ public partial class MainPageViewModel : ObservableObject
             browserOptions);
 
         SelectedFeedItem = null;
-    }
-
-    public MainPageViewModel(WeAreDotNetService weAreDotNetService)
-    {
-        this.weAreDotNetService = weAreDotNetService;
     }
 
     public async Task LoadFeedItems()

@@ -5,11 +5,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:WeAreDotNet.MobileApp.Views"
     Shell.FlyoutBehavior="Disabled">
+    <TabBar>
+        <Tab Title="Home">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate views:MainPage}"
+                Route="MainPage" />
+        </Tab>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
-
+        <Tab Title="Creators">
+            <ShellContent
+                Title="Creators"
+                ContentTemplate="{DataTemplate views:CreatorsPage}"
+                Route="Creators" />
+        </Tab>
+    </TabBar>
 </Shell>
 

@@ -20,5 +20,3 @@ public partial class MainPage
 		await mainPageViewModel.LoadFeedItems();
     }
 }
-
-

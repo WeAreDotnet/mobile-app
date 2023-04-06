@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:WeAreDotNet.MobileApp.Models"
+             xmlns:viewmodels="clr-namespace:WeAreDotNet.MobileApp.ViewModels"
+             x:Class="WeAreDotNet.MobileApp.Views.CreatorsPage"
+             x:DataType="viewmodels:CreatorsPageViewModel"
+             Title="Creators" BackgroundColor="#111633">
+    <VerticalStackLayout>
+        <!-- Counters -->
+        <Grid ColumnDefinitions="*,*" Margin="10">
+            <VerticalStackLayout Grid.Column="0">
+                <Label Text="Creators" FontSize="15" TextColor="{StaticResource White}" HorizontalOptions="Center"/>
+
+                <Label Text="{Binding CreatorCount}" FontSize="25" TextColor="{StaticResource White}" HorizontalOptions="Center" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1">
+                <Label Text="Users" FontSize="15" TextColor="{StaticResource White}" HorizontalOptions="Center"/>
+
+                <Label Text="{Binding UserCount}" FontSize="25" TextColor="{StaticResource White}" HorizontalOptions="Center" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Creators -->
+        <Label Text="New creators:" FontSize="15" TextColor="{StaticResource White}" Margin="10,0,0,0" />
+        <CarouselView ItemsSource="{Binding RecentCreators}" Loop="False" HeightRequest="120" HorizontalScrollBarVisibility="Never" Margin="10" PeekAreaInsets="15">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Creator">
+                    <VerticalStackLayout WidthRequest="140">
+                        <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
+                            <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource Secondary}">
+                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding Picture}" WidthRequest="60" HeightRequest="60">
+                                    <Image.Clip>
+                                        <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" TextColor="{StaticResource White}" FontSize="20" VerticalOptions="End" />
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Nickname, StringFormat='github.com/{0}'}" TextColor="{StaticResource White}" FontSize="15" VerticalOptions="Start" />
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <!-- Users -->
+        <Label Text="New users:" FontSize="15" TextColor="{StaticResource White}" Margin="10,0,0,0" />
+        <CarouselView ItemsSource="{Binding RecentUsers}" Loop="False" HeightRequest="120" HorizontalScrollBarVisibility="Never" Margin="10" PeekAreaInsets="15">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Creator">
+                    <VerticalStackLayout WidthRequest="140">
+                        <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
+                            <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource Secondary}">
+                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding Picture}" WidthRequest="60" HeightRequest="60">
+                                    <Image.Clip>
+                                        <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" TextColor="{StaticResource White}" FontSize="20" VerticalOptions="End" />
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Nickname, StringFormat='github.com/{0}'}" TextColor="{StaticResource White}" FontSize="15" VerticalOptions="Start" />
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </VerticalStackLayout>
+</ContentPage>

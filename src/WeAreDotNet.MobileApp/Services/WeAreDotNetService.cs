@@ -13,4 +13,11 @@ public class WeAreDotNetService
 
         return await JsonSerializer.DeserializeAsync<LandingPageFeed>(result);
     }
+
+    public async Task<LandingData> GetLandingData()
+    {
+        var result = await httpClient.GetStreamAsync("https://api.wearedotnet.io/getLandingData");
+
+        return await JsonSerializer.DeserializeAsync<LandingData>(result);
+    }
 }
