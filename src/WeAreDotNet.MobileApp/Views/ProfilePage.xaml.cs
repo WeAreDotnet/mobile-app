@@ -15,4 +15,11 @@ public partial class ProfilePage : ContentPage
 
 		InitializeComponent();
 	}
+
+    protected async override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+
+        await profilePageViewModel.LoadProfile(Nickname);
+    }
 }
