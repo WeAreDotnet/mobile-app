@@ -20,4 +20,11 @@ public class WeAreDotNetService
 
         return await JsonSerializer.DeserializeAsync<LandingData>(result);
     }
+
+    public async Task<Creator> GetProfile(string nickname)
+    {
+        var result = await httpClient.GetStreamAsync($"https://api.wearedotnet.io/creator/{nickname}");
+
+        return await JsonSerializer.DeserializeAsync<Creator>(result);
+    }
 }
