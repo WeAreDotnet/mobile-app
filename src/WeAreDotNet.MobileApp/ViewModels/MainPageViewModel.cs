@@ -11,9 +11,6 @@ public partial class MainPageViewModel : BaseViewModel
     [ObservableProperty]
     private ObservableCollection<FeedEntry> feedItems = new();
 
-    [ObservableProperty]
-    private FeedEntry selectedFeedItem;
-
     public MainPageViewModel(WeAreDotNetService weAreDotNetService)
         : base (weAreDotNetService)
     {
@@ -21,9 +18,20 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    private async Task FeedItemSelectedAsync()
+    private async Task CreatorSelectedAsync(string nickname)
     {
-        if (string.IsNullOrWhiteSpace(SelectedFeedItem?.Url))
+        var navigationParameter = new Dictionary<string, object>
+        {
+            { "nickname", nickname }
+        };
+
+        await Shell.Current.GoToAsync($"profile", navigationParameter);
+    }
+
+    [RelayCommand]
+    private async Task FeedItemSelectedAsync(FeedEntry entry)
+    {
+        if (string.IsNullOrWhiteSpace(entry.Url))
         {
             return;
         }
@@ -40,10 +48,8 @@ public partial class MainPageViewModel : BaseViewModel
             browserOptions.PreferredToolbarColor = (Color)colorvalue;
         }
 
-        await Browser.Default.OpenAsync(SelectedFeedItem.Url,
+        await Browser.Default.OpenAsync(entry.Url,
             browserOptions);
-
-        SelectedFeedItem = null;
     }
 
     public async Task LoadFeedItems()

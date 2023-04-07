@@ -5,16 +5,20 @@
              xmlns:models="clr-namespace:WeAreDotNet.MobileApp.Models"
              xmlns:converters="clr-namespace:WeAreDotNet.MobileApp.Converters"
              x:DataType="viewmodels:MainPageViewModel"
+             x:Name="mainPage"
              x:Class="WeAreDotNet.MobileApp.Views.MainPage" BackgroundColor="#111633">
 
 <ContentPage.Resources>
     <converters:FeedEntryToColorConverter x:Key="FeedTypeToColorConverter" />
 </ContentPage.Resources>
 
-    <CollectionView ItemsSource="{Binding FeedItems}" ItemSizingStrategy="MeasureFirstItem" Margin="10" SelectionMode="Single" SelectionChangedCommand="{Binding FeedItemSelectedCommand}" SelectedItem="{Binding SelectedFeedItem}">
+    <CollectionView ItemsSource="{Binding FeedItems}" ItemSizingStrategy="MeasureFirstItem" Margin="10">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:FeedEntry">
                 <VerticalStackLayout Padding="0,0,0,15">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=BindingContext.FeedItemSelectedCommand, Source={x:Reference mainPage}}" CommandParameter="{Binding .}" />
+                    </VerticalStackLayout.GestureRecognizers>
                     <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
                         <Grid RowDefinitions="200,75,25" HeightRequest="350" RowSpacing="5">
                             <Image Grid.Row="0" Source="{Binding PreviewImage}" HeightRequest="200" Aspect="AspectFill" />
@@ -28,6 +32,9 @@
                             <Label Grid.Row="1" Margin="10"  Text="{Binding Title}" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource White}" />
 
                             <HorizontalStackLayout Grid.Row="2" Spacing="5" VerticalOptions="Start" Margin="10,0,0,0">
+                                <HorizontalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.CreatorSelectedCommand, Source={x:Reference mainPage}}" CommandParameter="{Binding Nickname}" />
+                                </HorizontalStackLayout.GestureRecognizers>
                                     <Image Source="{Binding Picture}" WidthRequest="30" HeightRequest="30" VerticalOptions="Center">
                                         <Image.Clip>
                                             <EllipseGeometry RadiusX="15" RadiusY="15" Center="15,15" />
