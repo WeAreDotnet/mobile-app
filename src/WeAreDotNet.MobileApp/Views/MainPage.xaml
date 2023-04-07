@@ -3,8 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:WeAreDotNet.MobileApp.ViewModels"
              xmlns:models="clr-namespace:WeAreDotNet.MobileApp.Models"
+             xmlns:converters="clr-namespace:WeAreDotNet.MobileApp.Converters"
              x:DataType="viewmodels:MainPageViewModel"
              x:Class="WeAreDotNet.MobileApp.Views.MainPage" BackgroundColor="#111633">
+
+<ContentPage.Resources>
+    <converters:FeedEntryToColorConverter x:Key="FeedTypeToColorConverter" />
+</ContentPage.Resources>
 
     <CollectionView ItemsSource="{Binding FeedItems}" ItemSizingStrategy="MeasureFirstItem" Margin="10" SelectionMode="Single" SelectionChangedCommand="{Binding FeedItemSelectedCommand}" SelectedItem="{Binding SelectedFeedItem}">
         <CollectionView.ItemTemplate>
@@ -14,7 +19,9 @@
                         <Grid RowDefinitions="200,75,25" HeightRequest="350" RowSpacing="5">
                             <Image Grid.Row="0" Source="{Binding PreviewImage}" HeightRequest="200" Aspect="AspectFill" />
 
-                            <Border Grid.Row="0" VerticalOptions="End" HorizontalOptions="Start" Padding="5" Margin="10" BackgroundColor="{StaticResource Secondary}" StrokeThickness="0">
+                            <Border Grid.Row="0" VerticalOptions="End" HorizontalOptions="Start" Padding="5" Margin="10"
+                                    BackgroundColor="{Binding Type, Converter={StaticResource FeedTypeToColorConverter}}"
+                                    StrokeThickness="0" Opacity="0.7">
                                 <Label Text="{Binding Type}" TextColor="{StaticResource White}" />
                             </Border>
 
