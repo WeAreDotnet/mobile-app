@@ -11,6 +11,8 @@ public partial class MainPageViewModel : BaseViewModel
     [ObservableProperty]
     private ObservableCollection<FeedEntry> feedItems = new();
 
+    private DateTime lastUpdate = DateTime.MinValue;
+
     public MainPageViewModel(WeAreDotNetService weAreDotNetService)
         : base (weAreDotNetService)
     {
@@ -54,6 +56,12 @@ public partial class MainPageViewModel : BaseViewModel
 
     public async Task LoadFeedItems()
     {
+        if (DateTime.Now.Subtract(lastUpdate).TotalMinutes <= 5)
+        {
+            // TODO maybe do some better caching etc.
+            return;
+        }
+
         var landingPageFeed = await weAreDotNetService.GetLandingPageFeed();
 
         FeedItems.Clear();
@@ -62,5 +70,7 @@ public partial class MainPageViewModel : BaseViewModel
         {
             FeedItems.Add(item);
         }
+
+        lastUpdate = DateTime.Now;
     }
 }
