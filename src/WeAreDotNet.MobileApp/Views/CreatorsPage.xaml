@@ -6,7 +6,7 @@
              x:Class="WeAreDotNet.MobileApp.Views.CreatorsPage"
              x:DataType="viewmodels:CreatorsPageViewModel"
              x:Name="creatorsPage"
-             Title="Creators" BackgroundColor="#111633">
+             Title="Creators" BackgroundColor="{StaticResource PageBackground}">
     <VerticalStackLayout>
         <!-- Counters -->
         <Grid ColumnDefinitions="*,*" Margin="10">

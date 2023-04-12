@@ -6,7 +6,7 @@
              xmlns:converters="clr-namespace:WeAreDotNet.MobileApp.Converters"
              x:DataType="viewmodels:MainPageViewModel"
              x:Name="mainPage"
-             x:Class="WeAreDotNet.MobileApp.Views.MainPage" BackgroundColor="#111633">
+             x:Class="WeAreDotNet.MobileApp.Views.MainPage" BackgroundColor="{StaticResource PageBackground}">
 
 <ContentPage.Resources>
     <converters:FeedEntryToColorConverter x:Key="FeedTypeToColorConverter" />

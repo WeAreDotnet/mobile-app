@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:WeAreDotNet.MobileApp.ViewModels"
              x:Class="WeAreDotNet.MobileApp.Views.ProfilePage"
              x:DataType="viewmodels:ProfilePageViewModel"
-             Title="{Binding UserProfile.Nickname}" BackgroundColor="#111633">
+             Title="{Binding UserProfile.Nickname}" BackgroundColor="{StaticResource PageBackground}">
     <ScrollView>
         <VerticalStackLayout Margin="10" Spacing="10">
             <Grid ColumnDefinitions="100,*">
@@ -21,8 +21,15 @@
                     <Label Text="{Binding UserProfile.DisplayName}" FontSize="25" TextColor="{StaticResource White}" />
                     <Label Text="{Binding UserProfile.Nickname, StringFormat='github.com/{0}'}" FontSize="15" TextColor="{StaticResource White}" />
                 </VerticalStackLayout>
-
             </Grid>
+
+            <FlexLayout BindableLayout.ItemsSource="{Binding UserProfile.Tags}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding .}" TextColor="{StaticResource White}" Margin="0,0,5,0" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
 
             <Label Text="{Binding UserProfile.Socials.Bio}" TextColor="{StaticResource White}" />
         </VerticalStackLayout>
