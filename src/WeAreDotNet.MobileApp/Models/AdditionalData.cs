@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using WeAreDotNet.MobileApp.Converters;
 
 namespace WeAreDotNet.MobileApp.Models;
 
@@ -11,11 +12,14 @@ public class AdditionalData
         string.IsNullOrWhiteSpace(GitHubStarUrl?.ToString());
 
     [JsonPropertyName("xamarin")]
+    [JsonConverter(typeof(JsonBoolConverter))]
     public bool IsPlanetXamarinMember { get; set; }
 
     [JsonPropertyName("msstaff")]
+    [JsonConverter(typeof(JsonBoolConverter))]
     public bool IsMicrosoftEmployee { get; set; }
 
     [JsonPropertyName("womanofdotnet")]
+    [JsonConverter(typeof(JsonBoolConverter))]
     public bool IsWomanOfDotNetMember { get; set; }
 }
