@@ -7,19 +7,22 @@
              Title="{Binding UserProfile.Nickname}" BackgroundColor="#111633">
     <ScrollView>
         <VerticalStackLayout Margin="10" Spacing="10">
-            <HorizontalStackLayout>
-                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding UserProfile.Picture}" WidthRequest="100" HeightRequest="100" Margin="0,0,10,0">
+            <Grid ColumnDefinitions="100,*">
+                <Image Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding UserProfile.Picture}" WidthRequest="100" HeightRequest="100" Margin="0,0,10,0">
                     <Image.Clip>
                         <EllipseGeometry RadiusX="50" RadiusY="50" Center="50,50" />
                     </Image.Clip>
                 </Image>
 
-                <VerticalStackLayout>
+                <Image Grid.Column="0" VerticalOptions="End" HorizontalOptions="Start" Source="{Binding UserProfile.CountryCode, StringFormat='{0}.png'}" WidthRequest="25" HeightRequest="25" Aspect="AspectFit" >
+                </Image>
+
+                <VerticalStackLayout Grid.Column="1">
                     <Label Text="{Binding UserProfile.DisplayName}" FontSize="25" TextColor="{StaticResource White}" />
                     <Label Text="{Binding UserProfile.Nickname, StringFormat='github.com/{0}'}" FontSize="15" TextColor="{StaticResource White}" />
                 </VerticalStackLayout>
 
-            </HorizontalStackLayout>
+            </Grid>
 
             <Label Text="{Binding UserProfile.Socials.Bio}" TextColor="{StaticResource White}" />
         </VerticalStackLayout>

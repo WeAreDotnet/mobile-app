@@ -33,7 +33,7 @@
                             <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowProfileCommand, Source={Reference creatorsPage}}" CommandParameter="{Binding Nickname}" />
                         </VerticalStackLayout.GestureRecognizers>
                         <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
-                            <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource Secondary}">
+                            <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource CreatorBackground}">
                                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding Picture}" WidthRequest="60" HeightRequest="60">
                                     <Image.Clip>
                                         <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30" />
@@ -60,7 +60,7 @@
                         </VerticalStackLayout.GestureRecognizers>
 
                         <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
-                            <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource Secondary}">
+                            <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource UserBackground}">
                                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding Picture}" WidthRequest="60" HeightRequest="60">
                                     <Image.Clip>
                                         <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30" />
