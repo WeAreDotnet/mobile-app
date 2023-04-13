@@ -4,7 +4,7 @@ using WeAreDotNet.MobileApp.Models;
 
 namespace WeAreDotNet.MobileApp.Converters;
 
-public class FeedEntryToColorConverter : IValueConverter
+public class FeedEntryToIconConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -13,16 +13,16 @@ public class FeedEntryToColorConverter : IValueConverter
         if (string.IsNullOrWhiteSpace(feedEntryType))
         {
             // TODO What is the gracefall fallback color?
-            return Colors.White;
+            return ImageSource.FromFile("shape_plus.png");
         }
 
         return feedEntryType.ToLowerInvariant() switch
         {
-            "blog" => Color.FromRgba(0, 0, 1, 0.5),
-            "video" => Color.FromRgba(1, 0, 0, 0.5),
-            "sponsored" => Colors.Gray,
+            "blog" => ImageSource.FromFile("book.png"),
+            "video" => ImageSource.FromFile("youtube.png"),
+            "sponsored" => ImageSource.FromFile("shape_plus.png"),
             // TODO same fallback color as above
-            _ => Colors.White
+            _ => ImageSource.FromFile("shape_plus.png")
         };
     }
 

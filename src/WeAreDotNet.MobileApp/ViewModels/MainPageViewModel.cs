@@ -9,6 +9,9 @@ namespace WeAreDotNet.MobileApp.ViewModels;
 public partial class MainPageViewModel : BaseViewModel
 {
     [ObservableProperty]
+    private bool isDataRefreshing;
+
+    [ObservableProperty]
     private ObservableCollection<FeedEntry> feedItems = new();
 
     private DateTime lastUpdate = DateTime.MinValue;
@@ -17,6 +20,12 @@ public partial class MainPageViewModel : BaseViewModel
         : base (weAreDotNetService)
     {
 
+    }
+
+    [RelayCommand]
+    private async Task RefreshDataAsync()
+    {
+        await LoadFeedItems(true);
     }
 
     [RelayCommand]
@@ -54,12 +63,17 @@ public partial class MainPageViewModel : BaseViewModel
             browserOptions);
     }
 
-    public async Task LoadFeedItems()
+    public async Task LoadFeedItems(bool force = false)
     {
-        if (DateTime.Now.Subtract(lastUpdate).TotalMinutes <= 5)
+        if (!force && DateTime.Now.Subtract(lastUpdate).TotalMinutes <= 5)
         {
             // TODO maybe do some better caching etc.
             return;
+        }
+
+        if (!IsDataRefreshing)
+        {
+            IsDataRefreshing = true;
         }
 
         var landingPageFeed = await weAreDotNetService.GetLandingPageFeed();
@@ -72,5 +86,7 @@ public partial class MainPageViewModel : BaseViewModel
         }
 
         lastUpdate = DateTime.Now;
+
+        IsDataRefreshing = false;
     }
 }

@@ -37,8 +37,8 @@
         </Grid>
 
         <!-- Creators -->
-        <Label Text="New creators:" FontSize="15" TextColor="{StaticResource White}" Margin="10,0,0,0" />
-        <CarouselView ItemsSource="{Binding RecentCreators}" Loop="False" HeightRequest="120" HorizontalScrollBarVisibility="Never" Margin="10" PeekAreaInsets="15">
+        <Label Text="New creators:" FontSize="20" TextColor="{StaticResource White}" Margin="10,0,0,0" />
+        <CarouselView ItemsSource="{Binding RecentCreators}" Loop="False" HeightRequest="120" HorizontalScrollBarVisibility="Never" Margin="0,10,0,0" PeekAreaInsets="25">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Creator">
                     <VerticalStackLayout WidthRequest="140">
@@ -53,8 +53,20 @@
                                     </Image.Clip>
                                 </Image>
 
-                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" TextColor="{StaticResource White}" FontSize="20" VerticalOptions="End" />
-                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Nickname, StringFormat='github.com/{0}'}" TextColor="{StaticResource White}" FontSize="15" VerticalOptions="Start" />
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}"
+                                       TextColor="{StaticResource White}" FontSize="20"
+                                       VerticalOptions="End" LineBreakMode="TailTruncation" />
+                                <HorizontalStackLayout Grid.Column="1" Grid.Row="1">
+                                    <Image Source="github.png" VerticalOptions="Start">
+                                        <Image.Behaviors>
+                                            <mct:IconTintColorBehavior TintColor="White" />
+                                        </Image.Behaviors>
+                                    </Image>
+
+                                    <Label Text="{Binding Nickname, StringFormat='/{0}'}"
+                                           TextColor="{StaticResource White}" FontSize="15"
+                                           VerticalOptions="Start" LineBreakMode="TailTruncation" />
+                                </HorizontalStackLayout>
                             </Grid>
                         </Frame>
                     </VerticalStackLayout>
@@ -63,8 +75,8 @@
         </CarouselView>
 
         <!-- Users -->
-        <Label Text="New users:" FontSize="15" TextColor="{StaticResource White}" Margin="10,0,0,0" />
-        <CarouselView ItemsSource="{Binding RecentUsers}" Loop="False" HeightRequest="120" HorizontalScrollBarVisibility="Never" Margin="10" PeekAreaInsets="15">
+        <Label Text="New users:" FontSize="20" TextColor="{StaticResource White}" Margin="10,0,0,0" />
+        <CarouselView ItemsSource="{Binding RecentUsers}" Loop="False" HeightRequest="120" HorizontalScrollBarVisibility="Never" Margin="0,10,0,0" PeekAreaInsets="25">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:User">
                     <VerticalStackLayout WidthRequest="140">
@@ -80,8 +92,21 @@
                                     </Image.Clip>
                                 </Image>
 
-                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" TextColor="{StaticResource White}" FontSize="20" VerticalOptions="End" />
-                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Nickname, StringFormat='github.com/{0}'}" TextColor="{StaticResource White}" FontSize="15" VerticalOptions="Start" />
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}"
+                                       TextColor="{StaticResource White}" FontSize="20"
+                                       VerticalOptions="End" LineBreakMode="TailTruncation" />
+
+                                <HorizontalStackLayout Grid.Column="1" Grid.Row="1">
+                                    <Image Source="github.png" VerticalOptions="Start">
+                                        <Image.Behaviors>
+                                            <mct:IconTintColorBehavior TintColor="White" />
+                                        </Image.Behaviors>
+                                    </Image>
+
+                                    <Label Text="{Binding Nickname, StringFormat='/{0}'}"
+                                           TextColor="{StaticResource White}" FontSize="15"
+                                           VerticalOptions="Start" LineBreakMode="TailTruncation" />
+                                </HorizontalStackLayout>
                             </Grid>
                         </Frame>
                     </VerticalStackLayout>
