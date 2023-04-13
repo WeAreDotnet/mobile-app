@@ -7,10 +7,14 @@
              Title="{Binding UserProfile.Nickname}" BackgroundColor="{StaticResource PageBackground}">
     <ScrollView>
         <VerticalStackLayout Margin="10" Spacing="10">
-            <Grid ColumnDefinitions="100,*">
-                <Image Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding UserProfile.Picture}" WidthRequest="100" HeightRequest="100" Margin="0,0,10,0">
+            <Grid ColumnDefinitions="100,*" ColumnSpacing="10">
+                <Image Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center"
+                       Source="{Binding UserProfile.Picture}" WidthRequest="100"
+                       HeightRequest="100" Margin="0,0,10,0">
                     <Image.Clip>
-                        <EllipseGeometry RadiusX="50" RadiusY="50" Center="50,50" />
+                        <RoundRectangleGeometry
+                            CornerRadius="12"
+                            Rect="0,0,100,100" />
                     </Image.Clip>
                 </Image>
 
@@ -18,26 +22,30 @@
                 </Image>
 
                 <VerticalStackLayout Grid.Column="1">
-                    <Label Text="{Binding UserProfile.DisplayName}" FontSize="25" TextColor="{StaticResource White}" />
-                    <Label Text="{Binding UserProfile.Nickname, StringFormat='github.com/{0}'}" FontSize="15" TextColor="{StaticResource White}" />
+                    <Label Text="{Binding UserProfile.DisplayName}" FontSize="25"
+                           TextColor="{StaticResource White}" />
+
+                    <Label Text="{Binding UserProfile.Nickname, StringFormat='github.com/{0}'}"
+                           FontSize="15" TextColor="{StaticResource White}" />
+
                     <HorizontalStackLayout Margin="0,10,0,0" Spacing="5">
                         <Image Source="microsoft.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsMicrosoftEmployee, FallbackValue=False}" />
                         <Image Source="mvp.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.IsMvp}" />
-                        <Image Source="womandotnet.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsWomanOfDotNetMember, FallbackValue=False}" />
+                        <Image Source="womendotnet.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsWomanOfDotNetMember, FallbackValue=False}" />
                         <Image Source="planetxamarin.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsPlanetXamarinMember, FallbackValue=False}" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </Grid>
 
-            <FlexLayout BindableLayout.ItemsSource="{Binding UserProfile.Tags}">
+            <FlexLayout BindableLayout.ItemsSource="{Binding UserProfile.Tags}" HeightRequest="20">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Label Text="{Binding .}" TextColor="{StaticResource White}" Margin="0,0,5,0" />
+                        <Label Text="{Binding .}" TextColor="{StaticResource Gray200}" Margin="0,0,5,0" />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
 
-            <Label Text="{Binding UserProfile.Socials.Bio}" TextColor="{StaticResource White}" />
+            <Label Text="{Binding UserProfile.Socials.Bio}" FontSize="17" TextColor="{StaticResource White}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

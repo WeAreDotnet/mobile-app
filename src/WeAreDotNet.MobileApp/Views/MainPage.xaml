@@ -25,7 +25,7 @@
 
                             <Border Grid.Row="0" VerticalOptions="End" HorizontalOptions="Start" Padding="5" Margin="10"
                                     BackgroundColor="{Binding Type, Converter={StaticResource FeedTypeToColorConverter}}"
-                                    StrokeThickness="0" Opacity="0.7">
+                                    StrokeThickness="0" Opacity="0.5">
                                 <Label Text="{Binding Type}" TextColor="{StaticResource White}" />
                             </Border>
 
