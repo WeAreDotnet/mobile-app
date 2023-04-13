@@ -46,6 +46,9 @@
             </FlexLayout>
 
             <Label Text="{Binding UserProfile.Socials.Bio}" FontSize="17" TextColor="{StaticResource White}" />
+            <FlexLayout HeightRequest="50">
+                <Label Text="{Binding UserProfile.Socials.Github}" TextColor="Wheat" />
+            </FlexLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

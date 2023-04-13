@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:WeAreDotNet.MobileApp.Models"
              xmlns:viewmodels="clr-namespace:WeAreDotNet.MobileApp.ViewModels"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="WeAreDotNet.MobileApp.Views.CreatorsPage"
              x:DataType="viewmodels:CreatorsPageViewModel"
              x:Name="creatorsPage"
@@ -11,12 +12,24 @@
         <!-- Counters -->
         <Grid ColumnDefinitions="*,*" Margin="10">
             <VerticalStackLayout Grid.Column="0">
+                <Image Source="cowboy.png">
+                    <Image.Behaviors>
+                        <mct:IconTintColorBehavior TintColor="White" />
+                    </Image.Behaviors>
+                </Image>
+
                 <Label Text="Creators" FontSize="15" TextColor="{StaticResource White}" HorizontalOptions="Center"/>
 
                 <Label Text="{Binding CreatorCount}" FontSize="25" TextColor="{StaticResource White}" HorizontalOptions="Center" FontAttributes="Bold"/>
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="1">
+                <Image Source="account.png">
+                    <Image.Behaviors>
+                        <mct:IconTintColorBehavior TintColor="White" />
+                    </Image.Behaviors>
+                </Image>
+
                 <Label Text="Users" FontSize="15" TextColor="{StaticResource White}" HorizontalOptions="Center"/>
 
                 <Label Text="{Binding UserCount}" FontSize="25" TextColor="{StaticResource White}" HorizontalOptions="Center" FontAttributes="Bold"/>
