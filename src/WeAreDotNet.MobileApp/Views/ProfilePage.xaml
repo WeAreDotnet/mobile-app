@@ -41,7 +41,7 @@
                     <HorizontalStackLayout Margin="0,10,0,0" Spacing="5">
                         <Image Source="microsoft.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsMicrosoftEmployee, FallbackValue=False}" />
                         <Image Source="mvp.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.IsMvp}" />
-                        <Image Source="womendotnet.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsWomanOfDotNetMember, FallbackValue=False}" />
+                        <Image Source="womendotnet.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsWomenOfDotNetMember, FallbackValue=False}" />
                         <Image Source="planetxamarin.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsPlanetXamarinMember, FallbackValue=False}" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>

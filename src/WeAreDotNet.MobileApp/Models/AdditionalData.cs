@@ -19,7 +19,7 @@ public class AdditionalData
     [JsonConverter(typeof(JsonBoolConverter))]
     public bool IsMicrosoftEmployee { get; set; }
 
-    [JsonPropertyName("womanofdotnet")]
+    [JsonPropertyName("womenofdotnet")]
     [JsonConverter(typeof(JsonBoolConverter))]
-    public bool IsWomanOfDotNetMember { get; set; }
+    public bool IsWomenOfDotNetMember { get; set; }
 }
