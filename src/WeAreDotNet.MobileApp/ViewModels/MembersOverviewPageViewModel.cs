@@ -8,6 +8,9 @@ namespace WeAreDotNet.MobileApp.ViewModels;
 
 public partial class MembersOverviewPageViewModel : BaseViewModel
 {
+    private const int loadingIncrementCount = 12;
+    private int currentSkip = 0;
+
     [ObservableProperty]
     private ObservableCollection<Profile> members = new();
 
@@ -27,9 +30,24 @@ public partial class MembersOverviewPageViewModel : BaseViewModel
         await Shell.Current.GoToAsync($"profile", navigationParameter);
     }
 
+    [RelayCommand]
+    private async Task LoadMoreMembersAsync()
+    {
+        currentSkip += loadingIncrementCount;
+
+        var remoteMembers = await weAreDotNetService.GetMembers(currentSkip,
+            loadingIncrementCount);
+
+        foreach (var member in remoteMembers)
+        {
+            Members.Add(member);
+        }
+    }
+
     public async Task LoadMembers()
     {
-        var remoteMembers = await weAreDotNetService.GetMembers(0, 12);
+        var remoteMembers = await weAreDotNetService.GetMembers(currentSkip,
+            loadingIncrementCount);
 
         Members.Clear();
 

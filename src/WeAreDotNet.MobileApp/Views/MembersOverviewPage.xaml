@@ -10,7 +10,7 @@
              Background="{StaticResource PageBackground}"
              Title="Members">
     <CollectionView ItemsSource="{Binding Members}" ItemSizingStrategy="MeasureFirstItem"
-                        Margin="10" >
+                        Margin="10" RemainingItemsThreshold="4" RemainingItemsThresholdReachedCommand="{Binding LoadMoreMembersCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Profile">
                     <VerticalStackLayout Padding="0,0,0,15">
