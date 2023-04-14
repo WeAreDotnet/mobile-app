@@ -46,6 +46,12 @@ public partial class CreatorsOverviewPageViewModel : BaseViewModel
 
     public async Task LoadCreators()
     {
+        // TODO we probably want some kind of expiration or force refresh
+        if (Creators.Count > 0)
+        {
+            return;
+        }
+
         var remoteCreators = await weAreDotNetService.GetCreators(currentSkip,
             loadingIncrementCount);
 

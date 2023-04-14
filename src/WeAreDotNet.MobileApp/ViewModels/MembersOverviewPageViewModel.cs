@@ -46,6 +46,12 @@ public partial class MembersOverviewPageViewModel : BaseViewModel
 
     public async Task LoadMembers()
     {
+        // TODO we probably want some kind of expiration or force refresh
+        if (Members.Count > 0)
+        {
+            return;
+        }
+
         var remoteMembers = await weAreDotNetService.GetMembers(currentSkip,
             loadingIncrementCount);
 

@@ -8,6 +8,8 @@ namespace WeAreDotNet.MobileApp.ViewModels
 {
     public partial class CreatorsPageViewModel : BaseViewModel
     {
+        private DateTime lastUpdate = DateTime.MinValue;
+
         [ObservableProperty]
         private int creatorCount;
 
@@ -26,8 +28,14 @@ namespace WeAreDotNet.MobileApp.ViewModels
 
         }
 
-        public async Task LoadRecentJoins()
+        public async Task LoadRecentJoins(bool force = false)
         {
+            if (!force && DateTime.Now.Subtract(lastUpdate).TotalMinutes <= 5)
+            {
+                // TODO maybe do some better caching etc.
+                return;
+            }
+
             var landingData = await weAreDotNetService.GetLandingData();
 
             CreatorCount = landingData.CreatorCount;
@@ -46,6 +54,8 @@ namespace WeAreDotNet.MobileApp.ViewModels
             {
                 RecentUsers.Add(user);
             }
+
+            lastUpdate = DateTime.Now;
         }
 
         [RelayCommand]
