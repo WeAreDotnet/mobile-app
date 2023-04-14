@@ -14,11 +14,11 @@
                 Route="Content" />
         </Tab>
 
-        <Tab Title="Creators" Icon="account.png">
+        <Tab Title="Community" Icon="account.png">
             <ShellContent
-                Title="Creators"
+                Title="Community"
                 ContentTemplate="{DataTemplate views:CreatorsPage}"
-                Route="Creators" />
+                Route="Community" />
         </Tab>
     </TabBar>
 </Shell>

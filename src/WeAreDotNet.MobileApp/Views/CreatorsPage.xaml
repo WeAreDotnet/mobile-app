@@ -7,7 +7,8 @@
              x:Class="WeAreDotNet.MobileApp.Views.CreatorsPage"
              x:DataType="viewmodels:CreatorsPageViewModel"
              x:Name="creatorsPage"
-             Title="Creators" BackgroundColor="{StaticResource PageBackground}">
+             Title="Community"
+             BackgroundColor="{StaticResource PageBackground}">
     <VerticalStackLayout>
         <!-- Counters -->
         <Grid ColumnDefinitions="*,*" Margin="10">
@@ -18,7 +19,7 @@
 
                 <Image Source="cowboy.png">
                     <Image.Behaviors>
-                        <mct:IconTintColorBehavior TintColor="White" />
+                        <mct:IconTintColorBehavior TintColor="{StaticResource CreatorBackground}" />
                     </Image.Behaviors>
                 </Image>
 
@@ -34,7 +35,7 @@
 
                 <Image Source="account.png">
                     <Image.Behaviors>
-                        <mct:IconTintColorBehavior TintColor="White" />
+                        <mct:IconTintColorBehavior TintColor="{StaticResource UserBackground}" />
                     </Image.Behaviors>
                 </Image>
 
@@ -46,14 +47,24 @@
 
         <!-- Creators -->
         <Label Text="New creators:" FontSize="20" TextColor="{StaticResource White}" Margin="10,0,0,0" />
-        <CarouselView ItemsSource="{Binding RecentCreators}" Loop="False" HeightRequest="120" HorizontalScrollBarVisibility="Never" Margin="0,10,0,0" PeekAreaInsets="25">
+        <CarouselView ItemsSource="{Binding RecentCreators}" Loop="False" HeightRequest="120"
+                      HorizontalScrollBarVisibility="Never" Margin="0,10,0,0" PeekAreaInsets="40">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout SnapPointsAlignment="Start"
+                                   SnapPointsType="Mandatory"
+                                   Orientation="Horizontal"/>
+            </CarouselView.ItemsLayout>
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Creator">
                     <VerticalStackLayout WidthRequest="140">
                         <VerticalStackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowProfileCommand, Source={Reference creatorsPage}}" CommandParameter="{Binding Nickname}" />
                         </VerticalStackLayout.GestureRecognizers>
-                        <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
+                        <Border Padding="0" BackgroundColor="{StaticResource Primary}"
+                                Stroke="{StaticResource Primary}" WidthRequest="300">
+                            <Border.Clip>
+                                <RoundRectangleGeometry Rect="0,0,300,100" CornerRadius="15" />
+                            </Border.Clip>
                             <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource CreatorBackground}">
                                 <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding Picture}" WidthRequest="60" HeightRequest="60">
                                     <Image.Clip>
@@ -76,7 +87,7 @@
                                            VerticalOptions="Start" LineBreakMode="TailTruncation" />
                                 </HorizontalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
@@ -84,7 +95,13 @@
 
         <!-- Users -->
         <Label Text="New users:" FontSize="20" TextColor="{StaticResource White}" Margin="10,0,0,0" />
-        <CarouselView ItemsSource="{Binding RecentUsers}" Loop="False" HeightRequest="120" HorizontalScrollBarVisibility="Never" Margin="0,10,0,0" PeekAreaInsets="25">
+        <CarouselView ItemsSource="{Binding RecentUsers}" Loop="False" HeightRequest="120"
+                      HorizontalScrollBarVisibility="Never" Margin="0,10,0,0" PeekAreaInsets="40">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout SnapPointsAlignment="Start"
+                                   SnapPointsType="Mandatory"
+                                   Orientation="Horizontal"/>
+            </CarouselView.ItemsLayout>
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:User">
                     <VerticalStackLayout WidthRequest="140">
@@ -92,9 +109,15 @@
                             <TapGestureRecognizer Command="{Binding Path=BindingContext.ShowProfileCommand, Source={Reference creatorsPage}}" CommandParameter="{Binding Nickname}" />
                         </VerticalStackLayout.GestureRecognizers>
 
-                        <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
-                            <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50" Background="{StaticResource UserBackground}">
-                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Source="{Binding Picture}" WidthRequest="60" HeightRequest="60">
+                        <Border Padding="0" BackgroundColor="{StaticResource Primary}"
+                                Stroke="{StaticResource Primary}" WidthRequest="300">
+                            <Border.Clip>
+                                <RoundRectangleGeometry Rect="0,0,300,100" CornerRadius="15" />
+                            </Border.Clip>
+                            <Grid ColumnDefinitions="100, 200" RowDefinitions="50,50"
+                                  Background="{StaticResource UserBackground}">
+                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center"
+                                       Source="{Binding Picture}" WidthRequest="60" HeightRequest="60">
                                     <Image.Clip>
                                         <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30" />
                                     </Image.Clip>
@@ -116,7 +139,7 @@
                                            VerticalOptions="Start" LineBreakMode="TailTruncation" />
                                 </HorizontalStackLayout>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
