@@ -26,8 +26,9 @@
                     </Image.Clip>
                 </Image>
 
-                <Image Grid.Column="0" VerticalOptions="End" HorizontalOptions="Start" Source="{Binding UserProfile.CountryCode, StringFormat='{0}.png'}" WidthRequest="25" HeightRequest="25" Aspect="AspectFit" >
-                </Image>
+                <Image Grid.Column="0" VerticalOptions="End" HorizontalOptions="Start"
+                       Source="{Binding UserProfile.CountryCode, StringFormat='{0}.png'}"
+                       WidthRequest="25" HeightRequest="25" Aspect="AspectFit"/>
 
                 <VerticalStackLayout Grid.Column="1">
                     <Label Text="{Binding UserProfile.DisplayName}" FontSize="25"
@@ -36,12 +37,12 @@
                     <HorizontalStackLayout>
                         <Image Source="github.png" VerticalOptions="Start">
                             <Image.Behaviors>
-                                <mct:IconTintColorBehavior TintColor="White" />
+                                <mct:IconTintColorBehavior TintColor="{StaticResource Gray400}" />
                             </Image.Behaviors>
                         </Image>
 
                         <Label Text="{Binding UserProfile.Nickname, StringFormat='/{0}'}"
-                                TextColor="{StaticResource White}" FontSize="15"
+                                TextColor="{StaticResource Gray400}" FontSize="15"
                                 VerticalOptions="Start" LineBreakMode="TailTruncation" />
                     </HorizontalStackLayout>
 
@@ -69,58 +70,111 @@
             <Label Text="{Binding UserProfile.Socials.Bio}" FontSize="17" TextColor="{StaticResource White}" />
 
             <!-- Socials -->
-            <FlexLayout>
-                <Image Source="github.png">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Nickname, StringFormat='https://github.com/{0}'}" />
-                    </Image.GestureRecognizers>
-                    <Image.Behaviors>
-                        <mct:IconTintColorBehavior TintColor="{StaticResource White}" />
-                    </Image.Behaviors>
-                </Image>
+            <ScrollView Orientation="Horizontal">
+                <HorizontalStackLayout Spacing="5">
+                    <Border Background="{StaticResource Primary}" Stroke="{StaticResource Primary}"
+                            WidthRequest="50"
+                            HeightRequest="50">
+                        <Border.Clip>
+                            <RoundRectangleGeometry Rect="0,0,50,50" CornerRadius="25" />
+                        </Border.Clip>
 
-                <Image Source="linkedin.png" IsVisible="{Binding UserProfile.Socials.Linkedin, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Linkedin}" />
-                    </Image.GestureRecognizers>
-                    <Image.Behaviors>
-                        <mct:IconTintColorBehavior TintColor="{StaticResource LinkedIn}" />
-                    </Image.Behaviors>
-                </Image>
+                        <Image HeightRequest="40" WidthRequest="40" Source="github.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Nickname, StringFormat='https://github.com/{0}'}" />
+                            </Image.GestureRecognizers>
+                            <Image.Behaviors>
+                                <mct:IconTintColorBehavior TintColor="{StaticResource White}" />
+                            </Image.Behaviors>
+                        </Image>
+                    </Border>
 
-                <Image Source="twitter.png" IsVisible="{Binding UserProfile.Socials.Twitter, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Twitter, StringFormat='https://twitter.com/{0}'}" />
-                    </Image.GestureRecognizers>
-                    <Image.Behaviors>
-                        <mct:IconTintColorBehavior TintColor="{StaticResource Twitter}" />
-                    </Image.Behaviors>
-                </Image>
+                    <Border Background="{StaticResource Primary}"
+                            Stroke="{StaticResource Primary}"
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            IsVisible="{Binding UserProfile.Socials.Linkedin, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                        <Border.Clip>
+                            <RoundRectangleGeometry Rect="0,0,50,50" CornerRadius="25" />
+                        </Border.Clip>
 
-                <Image Source="youtube.png" IsVisible="{Binding UserProfile.Socials.Youtube, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Youtube}" />
-                    </Image.GestureRecognizers>
-                    <Image.Behaviors>
-                        <mct:IconTintColorBehavior TintColor="{StaticResource White}" />
-                    </Image.Behaviors>
-                </Image>
+                        <Image HeightRequest="40" WidthRequest="40" Source="linkedin.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Linkedin}" />
+                            </Image.GestureRecognizers>
+                            <Image.Behaviors>
+                                <mct:IconTintColorBehavior TintColor="{StaticResource LinkedIn}" />
+                            </Image.Behaviors>
+                        </Image>
+                    </Border>
 
-                <Image Source="mastodon.png" IsVisible="{Binding UserProfile.Socials.Mastodon, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Mastodon}" />
-                    </Image.GestureRecognizers>
-                    <Image.Behaviors>
-                        <mct:IconTintColorBehavior TintColor="{StaticResource White}" />
-                    </Image.Behaviors>
-                </Image>
+                    <Border Background="{StaticResource Primary}" Stroke="{StaticResource Primary}" WidthRequest="50" HeightRequest="50">
+                        <Border.Clip>
+                            <RoundRectangleGeometry Rect="0,0,50,50" CornerRadius="25" />
+                        </Border.Clip>
 
-                <Image Source="sessionize.png" IsVisible="{Binding UserProfile.Socials.Sessionize, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Sessionize}" />
-                    </Image.GestureRecognizers>
-                </Image>
-            </FlexLayout>
+                        <Image HeightRequest="40" WidthRequest="40" Source="twitter.png" IsVisible="{Binding UserProfile.Socials.Twitter, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Twitter, StringFormat='https://twitter.com/{0}'}" />
+                            </Image.GestureRecognizers>
+                            <Image.Behaviors>
+                                <mct:IconTintColorBehavior TintColor="{StaticResource Twitter}" />
+                            </Image.Behaviors>
+                        </Image>
+                    </Border>
+
+                    <Border Background="{StaticResource Primary}" Stroke="{StaticResource Primary}"
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            IsVisible="{Binding UserProfile.Socials.Youtube, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                        <Border.Clip>
+                            <RoundRectangleGeometry Rect="0,0,50,50" CornerRadius="25" />
+                        </Border.Clip>
+
+                        <Image HeightRequest="40" WidthRequest="40" Source="youtube.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Youtube}" />
+                            </Image.GestureRecognizers>
+                            <Image.Behaviors>
+                                <mct:IconTintColorBehavior TintColor="{StaticResource YouTube}" />
+                            </Image.Behaviors>
+                        </Image>
+                    </Border>
+
+                    <Border Background="{StaticResource Primary}" Stroke="{StaticResource Primary}"
+                            WidthRequest="50"
+                            HeightRequest="50"
+                             IsVisible="{Binding UserProfile.Socials.Mastodon, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                        <Border.Clip>
+                            <RoundRectangleGeometry Rect="0,0,50,50" CornerRadius="25" />
+                        </Border.Clip>
+
+                        <Image HeightRequest="40" WidthRequest="40" Source="mastodon.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Mastodon}" />
+                            </Image.GestureRecognizers>
+                            <Image.Behaviors>
+                                <mct:IconTintColorBehavior TintColor="{StaticResource Mastodon}" />
+                            </Image.Behaviors>
+                        </Image>
+                    </Border>
+                
+                    <Border Background="{StaticResource Primary}" Stroke="{StaticResource Primary}"
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            IsVisible="{Binding UserProfile.Socials.Sessionize, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                        <Border.Clip>
+                            <RoundRectangleGeometry Rect="0,0,50,50" CornerRadius="25" />
+                        </Border.Clip>
+
+                        <Image HeightRequest="40" WidthRequest="40" Source="sessionize.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Sessionize}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Border>
+                </HorizontalStackLayout>
+            </ScrollView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

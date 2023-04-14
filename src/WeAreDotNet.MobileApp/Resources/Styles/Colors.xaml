@@ -6,6 +6,8 @@
 
     <Color x:Key="Twitter">#1da1f2</Color>
     <Color x:Key="LinkedIn">#0e76a8</Color>
+    <Color x:Key="Mastodon">#6364FF</Color>
+    <Color x:Key="YouTube">#d02525</Color>
 
     <Color x:Key="Primary">#151F42</Color>
     <Color x:Key="Secondary">#4568DC</Color>
