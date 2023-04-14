@@ -4,6 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <Color x:Key="Twitter">#1da1f2</Color>
+    <Color x:Key="LinkedIn">#0e76a8</Color>
+
     <Color x:Key="Primary">#151F42</Color>
     <Color x:Key="Secondary">#4568DC</Color>
     <Color x:Key="Tertiary">#B06AB3</Color>

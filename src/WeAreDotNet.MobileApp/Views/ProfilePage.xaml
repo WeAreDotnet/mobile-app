@@ -5,7 +5,14 @@
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="WeAreDotNet.MobileApp.Views.ProfilePage"
              x:DataType="viewmodels:ProfilePageViewModel"
-             Title="{Binding UserProfile.Nickname}" BackgroundColor="{StaticResource PageBackground}">
+             x:Name="profilePage"
+             Title="{Binding UserProfile.Nickname}"
+             BackgroundColor="{StaticResource PageBackground}">
+
+    <ContentPage.Resources>
+        <mct:IsStringNotNullOrWhiteSpaceConverter x:Key="IsStringNotNullOrWhiteSpaceConverter" />
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout Margin="10" Spacing="10">
             <Grid ColumnDefinitions="100,*" ColumnSpacing="10">
@@ -38,6 +45,7 @@
                                 VerticalOptions="Start" LineBreakMode="TailTruncation" />
                     </HorizontalStackLayout>
 
+                    <!-- Badges -->
                     <HorizontalStackLayout Margin="0,10,0,0" Spacing="5">
                         <Image Source="microsoft.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsMicrosoftEmployee, FallbackValue=False}" />
                         <Image Source="mvp.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.IsMvp, FallbackValue=False}" />
@@ -48,6 +56,7 @@
                 </VerticalStackLayout>
             </Grid>
 
+            <!-- Tags -->
             <FlexLayout BindableLayout.ItemsSource="{Binding UserProfile.Tags}" HeightRequest="20">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
@@ -56,11 +65,62 @@
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
 
+            <!-- Bio -->
             <Label Text="{Binding UserProfile.Socials.Bio}" FontSize="17" TextColor="{StaticResource White}" />
-            <!-- TODO show socials -->
-            <!--<FlexLayout HeightRequest="50">
-                <Label Text="{Binding UserProfile.Socials.Github}" TextColor="White" />
-            </FlexLayout>-->
+
+            <!-- Socials -->
+            <FlexLayout>
+                <Image Source="github.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Nickname, StringFormat='https://github.com/{0}'}" />
+                    </Image.GestureRecognizers>
+                    <Image.Behaviors>
+                        <mct:IconTintColorBehavior TintColor="{StaticResource White}" />
+                    </Image.Behaviors>
+                </Image>
+
+                <Image Source="linkedin.png" IsVisible="{Binding UserProfile.Socials.Linkedin, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Linkedin}" />
+                    </Image.GestureRecognizers>
+                    <Image.Behaviors>
+                        <mct:IconTintColorBehavior TintColor="{StaticResource LinkedIn}" />
+                    </Image.Behaviors>
+                </Image>
+
+                <Image Source="twitter.png" IsVisible="{Binding UserProfile.Socials.Twitter, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Twitter, StringFormat='https://twitter.com/{0}'}" />
+                    </Image.GestureRecognizers>
+                    <Image.Behaviors>
+                        <mct:IconTintColorBehavior TintColor="{StaticResource Twitter}" />
+                    </Image.Behaviors>
+                </Image>
+
+                <Image Source="youtube.png" IsVisible="{Binding UserProfile.Socials.Youtube, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Youtube}" />
+                    </Image.GestureRecognizers>
+                    <Image.Behaviors>
+                        <mct:IconTintColorBehavior TintColor="{StaticResource White}" />
+                    </Image.Behaviors>
+                </Image>
+
+                <Image Source="mastodon.png" IsVisible="{Binding UserProfile.Socials.Mastodon, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Mastodon}" />
+                    </Image.GestureRecognizers>
+                    <Image.Behaviors>
+                        <mct:IconTintColorBehavior TintColor="{StaticResource White}" />
+                    </Image.Behaviors>
+                </Image>
+
+                <Image Source="sessionize.png" IsVisible="{Binding UserProfile.Socials.Sessionize, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}, FallbackValue=False}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.OpenSocialCommand, Source={x:Reference profilePage}}" CommandParameter="{Binding UserProfile.Socials.Sessionize}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </FlexLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
