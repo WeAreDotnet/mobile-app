@@ -58,5 +58,11 @@ namespace WeAreDotNet.MobileApp.ViewModels
 
             await Shell.Current.GoToAsync($"profile", navigationParameter);
         }
+
+        [RelayCommand]
+        private async Task ShowMembersAsync()
+        {
+            await Shell.Current.GoToAsync($"members");
+        }
     }
 }

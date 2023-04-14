@@ -24,11 +24,13 @@ public static class MauiProgram
 		// Pages
 		builder.Services.AddTransient<MainPage>();
 		builder.Services.AddTransient<CreatorsPage>();
+		builder.Services.AddTransient<MembersOverviewPage>();
 		builder.Services.AddTransient<ProfilePage>();
 
         // ViewModels
         builder.Services.AddTransient<MainPageViewModel>();
         builder.Services.AddTransient<CreatorsPageViewModel>();
+        builder.Services.AddTransient<MembersOverviewPageViewModel>();
         builder.Services.AddTransient<ProfilePageViewModel>();
 
         // Services

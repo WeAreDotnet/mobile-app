@@ -33,4 +33,11 @@ public class WeAreDotNetService
 
         return await JsonSerializer.DeserializeAsync<Profile>(result);
     }
+
+    public async Task<List<Profile>> GetMembers(int skip = 0, int take = 10)
+    {
+        var result = await httpClient.GetStreamAsync($"members/find?skip={skip}&take={take}");
+
+        return await JsonSerializer.DeserializeAsync<List<Profile>>(result);
+    }
 }

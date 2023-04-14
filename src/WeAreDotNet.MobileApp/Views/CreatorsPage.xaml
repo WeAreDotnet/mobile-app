@@ -24,6 +24,10 @@
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="1">
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowMembersCommand}" />
+                </VerticalStackLayout.GestureRecognizers>
+
                 <Image Source="account.png">
                     <Image.Behaviors>
                         <mct:IconTintColorBehavior TintColor="White" />
