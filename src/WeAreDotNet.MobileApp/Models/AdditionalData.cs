@@ -9,7 +9,7 @@ public class AdditionalData
     public Uri GitHubStarUrl { get; set; }
 
     public bool IsGitHubStar =>
-        string.IsNullOrWhiteSpace(GitHubStarUrl?.ToString());
+        !string.IsNullOrWhiteSpace(GitHubStarUrl?.ToString());
 
     [JsonPropertyName("xamarin")]
     [JsonConverter(typeof(JsonBoolConverter))]

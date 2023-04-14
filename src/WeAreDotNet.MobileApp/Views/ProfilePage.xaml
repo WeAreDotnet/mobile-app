@@ -43,6 +43,7 @@
                         <Image Source="mvp.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.IsMvp}" />
                         <Image Source="womendotnet.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsWomenOfDotNetMember, FallbackValue=False}" />
                         <Image Source="planetxamarin.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsPlanetXamarinMember, FallbackValue=False}" />
+                        <Image Source="ghstar.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" IsVisible="{Binding UserProfile.AdditionalData.IsGitHubStar, FallbackValue=False}" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </Grid>
@@ -56,9 +57,10 @@
             </FlexLayout>
 
             <Label Text="{Binding UserProfile.Socials.Bio}" FontSize="17" TextColor="{StaticResource White}" />
-            <FlexLayout HeightRequest="50">
-                <Label Text="{Binding UserProfile.Socials.Github}" TextColor="Wheat" />
-            </FlexLayout>
+            <!-- TODO show socials -->
+            <!--<FlexLayout HeightRequest="50">
+                <Label Text="{Binding UserProfile.Socials.Github}" TextColor="White" />
+            </FlexLayout>-->
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
