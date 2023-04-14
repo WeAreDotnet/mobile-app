@@ -12,6 +12,10 @@
         <!-- Counters -->
         <Grid ColumnDefinitions="*,*" Margin="10">
             <VerticalStackLayout Grid.Column="0">
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowCreatorsCommand}" />
+                </VerticalStackLayout.GestureRecognizers>
+
                 <Image Source="cowboy.png">
                     <Image.Behaviors>
                         <mct:IconTintColorBehavior TintColor="White" />

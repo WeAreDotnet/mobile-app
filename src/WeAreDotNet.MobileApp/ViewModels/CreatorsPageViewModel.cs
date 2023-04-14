@@ -64,5 +64,11 @@ namespace WeAreDotNet.MobileApp.ViewModels
         {
             await Shell.Current.GoToAsync($"members");
         }
+
+        [RelayCommand]
+        private async Task ShowCreatorsAsync()
+        {
+            await Shell.Current.GoToAsync($"creators");
+        }
     }
 }
