@@ -17,7 +17,7 @@
                     <VerticalStackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=BindingContext.MemberSelectedCommand, Source={x:Reference membersOverviewPage}}" CommandParameter="{Binding Nickname}" />
                     </VerticalStackLayout.GestureRecognizers>
-                    <Frame CornerRadius="20" Padding="5" BackgroundColor="{StaticResource UserBackground}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource UserBackground}">
+                    <Frame CornerRadius="5" HeightRequest="95" Padding="5" BackgroundColor="{StaticResource UserBackground}" IsClippedToBounds="False" HasShadow="False" BorderColor="{StaticResource UserBackground}">
                         <Grid ColumnDefinitions="100,*" ColumnSpacing="10">
                             <Image Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center"
                                     Source="{Binding Picture}" WidthRequest="80"
