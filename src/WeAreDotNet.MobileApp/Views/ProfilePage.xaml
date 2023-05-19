@@ -18,10 +18,10 @@
             <Grid ColumnDefinitions="100,*" ColumnSpacing="10">
                 <Image Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center"
                        Source="{Binding UserProfile.Picture}" WidthRequest="100"
-                       HeightRequest="100" Margin="0,0,10,0">
+                       HeightRequest="100" Margin="0,0,0,0">
                     <Image.Clip>
                         <RoundRectangleGeometry
-                            CornerRadius="12"
+                            CornerRadius="50"
                             Rect="0,0,100,100" />
                     </Image.Clip>
                 </Image>
