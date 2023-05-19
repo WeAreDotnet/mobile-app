@@ -26,7 +26,7 @@
                             <TapGestureRecognizer Command="{Binding Path=BindingContext.FeedItemSelectedCommand, Source={x:Reference mainPage}}" CommandParameter="{Binding .}" />
                         </VerticalStackLayout.GestureRecognizers>
                         <Frame CornerRadius="20" Padding="0" BackgroundColor="{StaticResource Primary}" IsClippedToBounds="True" HasShadow="False" BorderColor="{StaticResource Primary}">
-                            <Grid RowDefinitions="200,75,25" HeightRequest="350" RowSpacing="5">
+                            <Grid RowDefinitions="200,75,30" HeightRequest="350" RowSpacing="5">
                                 <Image Grid.Row="0" Source="{Binding PreviewImage}" HeightRequest="200" Aspect="AspectFill" />
 
                                 <Border Grid.Row="0" VerticalOptions="End" HorizontalOptions="Start" Padding="5" Margin="10"
